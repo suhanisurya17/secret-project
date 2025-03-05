@@ -1,0 +1,36 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="baddie">
+        <video controls class="video">
+            <source id="videoSource" src="pictures/edit1.MOV" type="video/mp4">
+        </video>
+
+        <button class="scroll">></button>
+    </div>
+
+    <script>
+    const videoList = [
+        "pictures/edit1.MOV",
+        "pictures/edit2.MOV",
+        "pictures/edit3.MOV" // Add more video files here
+    ];
+
+    let currentVideoIndex = 0;
+
+    document.querySelector(".scroll").addEventListener("click", function() {
+        currentVideoIndex = (currentVideoIndex + 1) % videoList.length; // Loop through videos
+        const videoElement = document.querySelector(".video");
+        const sourceElement = document.querySelector("#videoSource");
+
+        sourceElement.src = videoList[currentVideoIndex];
+        videoElement.load(); // Reload video with the new source
+        videoElement.play(); // Auto-play the next video (optional)
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<div style="display: flex;
+    justify-content: center;  /* Centers horizontally */
+    align-items: center;
+   ">
+<img class="poop" src="pictures/poop2.JPG">
+</div>
+
+<script>
+        function createFloatingPoop() {
+            const poopImg = document.createElement("img");
+            poopImg.src = "pictures/poo.png";
+            poopImg.classList.add("floating-poop");
+
+            poopImg.style.left = Math.random() * window.innerWidth + "px";
+            poopImg.style.animationDuration = (Math.random() * 3 + 2) + "s"; // Random speed
+            document.body.appendChild(poopImg);
+
+            setTimeout(() => poopImg.remove(), 5000); // Remove after animation ends
+        }
+
+        setInterval(createFloatingPoop, 500); // Generate every 0.5 seconds
+    </script>
+</body>
+</html>
