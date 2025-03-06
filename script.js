@@ -14,5 +14,10 @@ function appear(centerSelector, circleSelector, radius) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-  appear(".center-picture", ".circle-picture", 300);
+  appear(".center-picture", ".circle-picture", 250);
 });
+
+
+function goBack() {
+    window.location.href= 'main.html';
+}
