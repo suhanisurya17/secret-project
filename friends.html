@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <title>Auto-Scrolling Photo Gallery</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #ffdde1);
+            font-family: 'Fredoka One', cursive;
+        }
+
+        h1 {
+            text-align: center;
+            color: #eb2f6f;
+            margin-bottom: 20px;
+        }
+
+        /* 🎵 Stylish Spotify Embed */
+        .spotify-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px; /* Smooth pill-shaped corners */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .spotify-container iframe {
+            width: 100%;
+            height: 200px;
+            border-radius: 15px;
+        }
+
+        iframe {
+            margin-top: 30px;
+        }
+
+        .photo-gallery {
+            width: 85%;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 20px; /* Rounded gallery container */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 15px;
+            padding: 10px;
+            height: 500px;
+        }
+
+        .gallery img {
+            width: 350px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px; /* Rounded photo corners */
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            font-size = 16px;
+        }
+
+    </style>
+</head>
+<body>
+
+<button class="back-button" onclick="goBack()">Back</button>
+
+<h1>friends and loves!</h1>
+
+<div class="photo-gallery" id="gallery">
+    <div class="gallery" id="photoGallery"></div>
+</div>
+
+<script>
+        const gallery = document.getElementById("photoGallery");
+        const galleryContainer = document.getElementById("gallery");
+
+        // Add images dynamically
+        for (let i = 1; i <= 58; i++) {
+            let img = document.createElement("img");
+            img.src = `pictures/photogallery/photo${i}.jpeg`;
+            img.alt = `Photo ${i}`;
+            gallery.appendChild(img);
+        }
+
+        // Auto-scroll function
+        function autoScroll() {
+            galleryContainer.scrollBy({
+                left: 300, // Smooth scrolling step
+                behavior: 'smooth'
+            });
+
+            if (galleryContainer.scrollLeft + galleryContainer.clientWidth >= galleryContainer.scrollWidth) {
+                galleryContainer.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+        }
+
+        // Start auto-scroll every 3 seconds
+        let scrollInterval = setInterval(autoScroll, 3000);
+
+        // Pause scrolling when the user hovers over the gallery
+        galleryContainer.addEventListener("mouseenter", () => clearInterval(scrollInterval));
+        galleryContainer.addEventListener("mouseleave", () => scrollInterval = setInterval(autoScroll, 3000));
+    </script>
+
+<div class="spotify-container">
+    <iframe src="https://open.spotify.com/embed/playlist/48oQz6NGEm6X6ktqWPEMAV?utm_source=generator&theme=0"
+            frameBorder="0" allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+    </iframe>
+</div>
+
+</body>
+</html>

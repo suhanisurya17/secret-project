@@ -21,3 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
 function goBack() {
     window.location.href= 'main.html';
 }
+
+function loadGoogleFont(fontName) {
+    let link = document.createElement("link");
+    link.href = `https://fonts.googleapis.com/css2?family=${fontName.replace(/ /g, '+')}&display=swap`;
+    link.rel = "stylesheet";
+    document.head.appendChild(link);
+}
+
+// Example usage
