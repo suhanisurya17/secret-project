@@ -1,19 +1,86 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="script.js"></script>
+    <title>Escape the Poop</title>
+    <style>
+        /* General Page Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffdde1, #fad0c4, #ff9a9e);
+            font-family: 'Arial', sans-serif;
+        }
 
+        /* Main Poop Image */
+        .poop {
+            width: 100px;
+            height: auto;
+            position: absolute;
+            transition: transform 0.1s linear;
+            border-radius: 30px;
+        }
+
+        /* Floating Poop Animation */
+        .floating-poop {
+            position: absolute;
+            width: 50px;
+            animation: floatUp ease-in-out infinite;
+        }
+
+        @keyframes floatUp {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            font-size = 16px;
+        }
+    </style>
 </head>
-
 <body>
+<button class="back-button" onclick="goBack()">Back</button>
 
-<div style="display: flex;
-    justify-content: center;  /* Centers horizontally */
-    align-items: center;
-   ">
-<img class="poop" src="pictures/poop2.JPG">
-</div>
+<img class="poop" src="pictures/poop2.JPG" id="poop">
 
 <script>
+        const poop = document.getElementById("poop");
+
+        // Moves the poop away when the mouse gets close
+        document.addEventListener("mousemove", (event) => {
+            const x = event.clientX;
+            const y = event.clientY;
+            const poopX = poop.offsetLeft + poop.width / 2;
+            const poopY = poop.offsetTop + poop.height / 2;
+            const distance = Math.hypot(x - poopX, y - poopY);
+
+            if (distance < 150) { // If mouse gets close, move away
+                const angle = Math.atan2(y - poopY, x - poopX);
+                const moveX = Math.cos(angle) * -100;
+                const moveY = Math.sin(angle) * -100;
+
+                poop.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            }
+        });
+
+        // Creates floating poop
         function createFloatingPoop() {
             const poopImg = document.createElement("img");
             poopImg.src = "pictures/poo.png";
@@ -28,5 +95,6 @@
 
         setInterval(createFloatingPoop, 500); // Generate every 0.5 seconds
     </script>
+
 </body>
 </html>

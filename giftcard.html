@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fun Page</title>
+    <script src="script.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
     <style>
         body {
@@ -68,29 +69,73 @@
         h2 {
             font-size: 1rem;
         }
+
+        input {
+    width: 300px;
+    height: 40px;
+    border-radius: 40px;
+    border: 2px solid #ff758c;
+    padding: 10px;
+    font-size: 1rem;
+    text-align: center;
+    outline: none;
+    transition: 0.3s ease;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    background: white;
+    color: #333;
+    font-family: 'Fredoka One', cursive;
+    animation: pulse 1.5s infinite;
+}
+
+input::placeholder {
+    color: #ff758c;
+    opacity: 0.7;
+    font-style: italic;
+}
+
+input:focus {
+    border-color: #ff5277;
+    transform: scale(1.05);
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
+
+.back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            font-size = 16px;
+        }
+
     </style>
 </head>
 <body>
+<button class="back-button" onclick="goBack()">Back</button>
+
 <div class="container">
     <img src="pictures/elyssaindex.png" style="width: 300px;">
     <h1 class="fun-text">Hello Elyssa Qi! 🎉</h1>
     <h2 class="fun-text">Please claim your gift card whenever you so desire!</h2>
     <input type="text" id="password" placeholder="What is the name of your newest dog">
     <button class="fun-button" onclick="password()">Submit</button>
-
-    <script>
-        function password() {
-        var password = document.getElementById("password").value;
-        if (password == "millie" || password == "Millie") {
-            window.location.href = "https://sephoraca.cashstar.com/gift-card/view/FOHBh0pHrrOp9Xb6ohhoQKwZ7/?shortUrlRedirect=True";
-        }
-    </script>
-
 </div>
 
+<script>
+    function password() {
+        var passwordInput = document.getElementById("password").value;
+        if (passwordInput === "millie" || passwordInput === "Millie") {
+            window.location.href = "https://sephoraca.cashstar.com/gift-card/view/FOHBh0pHrrOp9Xb6ohhoQKwZ7/?shortUrlRedirect=True";
+        } else {
+            alert("Incorrect password! Try again.");
+        }
+    }
+</script>
 
 </body>
 </html>
-
-
-
